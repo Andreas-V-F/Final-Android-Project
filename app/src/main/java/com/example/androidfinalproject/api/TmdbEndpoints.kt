@@ -7,5 +7,11 @@ import retrofit2.http.Query
 
 interface TmdbEndpoints {
     @GET("/3/movie/popular")
-    fun getMovies(@Query("api_key") key: String): Call<PopularMovies>
+    fun getPopMovies(@Query("api_key") key: String): Call<PopularMovies>
+
+    @GET("/3/movie/top_rated")
+    fun getTopMovies(@Query("api_key") key: String): Call<PopularMovies>
+
+    @GET("/3/search/movie")
+    fun searchMovies(@Query("api_key") key: String, @Query("query") query : String): Call<PopularMovies>
 }

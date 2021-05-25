@@ -1,6 +1,7 @@
 package com.example.androidfinalproject.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,7 +23,7 @@ class PhoneFragment : Fragment(R.layout.activity_main), MoviesAdapter.OnItemClic
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
-        val call = request.getMovies(Constants.api_key)
+        val call = request.searchMovies(Constants.api_key, "Cor")
 
         call.enqueue(object : Callback<PopularMovies> {
             override fun onResponse(call: Call<PopularMovies>, response: Response<PopularMovies>) {
@@ -45,6 +46,7 @@ class PhoneFragment : Fragment(R.layout.activity_main), MoviesAdapter.OnItemClic
 
     override fun onItemClick(position: Int, result: Result) {
         val overviewFragment = OverviewFragment(result)
+        Log.v("cor", resources.getBoolean(R.bool.isTablet).toString())
 
         if (resources.getBoolean(R.bool.isTablet)) {
             activity!!.supportFragmentManager.beginTransaction()
