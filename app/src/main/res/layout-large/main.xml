@@ -2,34 +2,96 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:rotation="0">
 
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Search"
+        app:layout_constraintEnd_toStartOf="@+id/topMovieButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/etSearch"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/topMovieButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Top Movies"
+        app:layout_constraintEnd_toStartOf="@+id/popMoviesButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/searchButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/popMoviesButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Popular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/topMovieButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="248dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch" />
+
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Search"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"/>
+
     <FrameLayout
         android:id="@+id/flTest"
         android:layout_width="406dp"
-        android:layout_height="640dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
         android:rotation="0"
         android:rotationX="0"
         android:rotationY="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitle">
 
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/flOverview"
         android:layout_width="476dp"
-        android:layout_height="666dp"
-        android:layout_marginEnd="108dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="25dp"
         android:rotation="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805">
+        app:layout_constraintStart_toEndOf="@+id/flTest"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitle">
 
     </FrameLayout>
 

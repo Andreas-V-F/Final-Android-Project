@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -25,12 +24,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class PhoneFragment : Fragment(R.layout.activity_main), MoviesAdapter.OnItemClickListener {
+class TopMovieFragment : Fragment(R.layout.activity_main), MoviesAdapter.OnItemClickListener {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val request = ServiceBuilder.buildService(TmdbEndpoints::class.java)
-        val call = request.getPopMovies(Constants.api_key)
+        val call = request.getTopMovies(Constants.api_key)
 
         call.enqueue(object : Callback<PopularMovies> {
             override fun onResponse(call: Call<PopularMovies>, response: Response<PopularMovies>) {
@@ -39,7 +38,7 @@ class PhoneFragment : Fragment(R.layout.activity_main), MoviesAdapter.OnItemClic
                     recyclerView.apply {
                         setHasFixedSize(true)
                         layoutManager = GridLayoutManager(activity, 2)
-                        adapter = MoviesAdapter(response.body()!!.results, this@PhoneFragment)
+                        adapter = MoviesAdapter(response.body()!!.results, this@TopMovieFragment)
                     }
                 }
             }
@@ -49,20 +48,21 @@ class PhoneFragment : Fragment(R.layout.activity_main), MoviesAdapter.OnItemClic
             }
         })
         val editText = activity!!.findViewById<TextView>(R.id.tvMainTitle)
-        editText.text = "Popular Movies"
+        editText.text =  "Top Movies"
         if(resources.getBoolean(R.bool.isTablet)){
             val flLayout = activity!!.findViewById<FrameLayout>(R.id.flTest)
             val frameLayoutParams = flLayout.layoutParams
             frameLayoutParams.width = activity!!.windowManager.currentWindowMetrics.bounds.right - 20
             flLayout.requestLayout()
             flLayout.forceLayout()
+
         }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onItemClick(position: Int, result: Result) {
         val overviewFragment = OverviewFragment(result)
-
         if (resources.getBoolean(R.bool.isTablet)) {
             if(resources.getBoolean(R.bool.isTablet)){
                 val flLayout = activity!!.findViewById<FrameLayout>(R.id.flTest)
@@ -81,5 +81,4 @@ class PhoneFragment : Fragment(R.layout.activity_main), MoviesAdapter.OnItemClic
         }
 
     }
-
 }
